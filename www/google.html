@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />  
+        <title>Remote4Play</title>   
+        <link rel="stylesheet" type="text/css" href="css/popup.css" />
+
+        <script src="phonegap.js"></script>
+        <script src="childbrowser.js"></script>
+        <script src="barcodescanner.js"></script>  
+    </head>
+<body class="miniplayer">
+	<div id="loading">
+	    <img id="img-logo" src="img/logo.png">
+	    <img id="img-loading" src="img/loading.gif">
+	</div>
+	<script type="text/javascript">
+	    function _url_param(name, url) {
+            return unescape((RegExp(name + '=' +
+                '(.+?)(&|$)').exec(url) || [,null])[1]);
+        }
+	    
+		document.addEventListener('deviceready', function(){
+			setTimeout(function(){
+                window.plugins.childBrowser.showWebPage("https://ws-music.appspot.com/app_connect?cb=https%3a%2f%2fws-music.appspot.com%2f", { showLocationBar: false });
+                window.plugins.childBrowser.onLocationChange = function(location)
+                {
+                    var token = _url_param("token", location);
+                    var user_key = _url_param("user_key", location);
+                    if(token != "null" && user_key != "null")
+                    {
+                        localStorage.setItem("token",token);
+                        localStorage.setItem("user_key",user_key);
+                        window.plugins.childBrowser.close();
+                        setTimeout(function(){
+                            window.location.href = "player.html";
+                        },100);
+                    }   
+                }
+            },500);
+		}, true);
+	</script>
+</body>
+</html>

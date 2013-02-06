@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta name="viewport" content="width = device-width" />
+<link rel="stylesheet" type="text/css" href="css/popup.css" />
+<script src='https://talkgadget.google.com/talkgadget/channel.js'></script>
+<script type="text/javascript" src="lib/jquery-1.6.1.min.js"></script>
+<script type="text/javascript" src="js/channel.js"></script>
+<script type="text/javascript" src="js/popup.js"></script>
+</head>
+<body class="miniplayer">
+	<div id="lastfmContainer">
+		<div id="main" class="cf">
+	        <div id="cover-box">
+	            <img id="cover">
+	        </div>
+	        <div id="song">
+	            <div id="now-playing">
+	                <p id="track"></p>
+	                <p id="artist"></p>
+	            </div>
+	            <div id="rating-buttons" class="hover">
+		            <div id="google-buttons" class="fixed-width-rating-col"></div>
+		            <div id="lastfm-buttons">
+		                <span id="love-button"></span>
+		            </div>
+	            </div>
+	        </div>
+	    </div>
+      <div id="darkBar">
+        <div id="time" style="display:none" class="hide">
+          <div id="timeBarHolder">
+            <div id="timeBar"></div>
+          </div>
+          <div id="timeText"></div>
+        </div>
+        <div id="playing_controls" class="cf"></div>
+      </div>
+	    <div id="bottom" class="cf miniplayerBottom">
+	        <div id="lastfm-profile"></div>
+	        <div id="miniPlaylist"></div>
+	    </div>
+	</div>
+	<div id="loading">
+	    <img id="img-logo" src="img/logo.png">
+	    <img id="img-loading" src="img/loading.gif">
+	</div>
+	<script>
+	    var token = localStorage.getItem("token");
+	    var user_key = localStorage.getItem("user_key");
+	    var bp = {};
+	</script>
+</body>
+</html>
