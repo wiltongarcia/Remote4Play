@@ -16,10 +16,10 @@ var reload_popup = function()
     /* Render popup when DOM is ready */
 
     render_popup();
-    notification_autoclose();
+    //notification_autoclose();
 }
 
-function render_popup(){
+var render_popup = function () {
     render_time();
     render_scrobble_link();
     render_options_link();
@@ -33,31 +33,36 @@ function render_popup(){
     render_google_rating();
     render_toast_duration_input();
     render_about_links_data();
+
+
+    // sei o que é
+    render_volume_plus();
+    render_volume_minus();
 }
 
 /* Notification closing */
 
-// Auto closes notification after 8 seconds, stops auto close if moused over, then starts 2 second close count after close
-function notification_autoclose(){
-	if($('body').hasClass('notification')){
-		windowTimer = setTimeout(function(){window.close();}, bp.SETTINGS.toast_duration);
-		window.onmouseout = function(e){
-			windowTimer = setTimeout(function(){window.close();}, '2000');
-		}
-		window.onmouseover = function(e){
-			clearTimeout(windowTimer);
-		}
-	}
-}
+//Auto closes notification after 8 seconds, stops auto close if moused over, then starts 2 second close count after close
+//var notification_autoclose = function () {
+	//if($('body').hasClass('notification')){
+		//windowTimer = setTimeout(function(){window.close();}, bp.SETTINGS.toast_duration);
+		//window.onmouseout = function(e){
+			//windowTimer = setTimeout(function(){window.close();}, '2000');
+		//}
+		//window.onmouseover = function(e){
+			//clearTimeout(windowTimer);
+		//}
+	//}
+//}
 
 // Closes the notification
-function notification_close(){
+var notification_close = function () {
 	if($('body').hasClass('notification')){
 		window.close();
 	}
 }
 
-function miniplayer_close(){
+var miniplayer_close = function () {
     if($('body').hasClass('miniplayer')){
         window.close();
     }
@@ -65,7 +70,7 @@ function miniplayer_close(){
 
 /* Auto updating */
 
-function auto_update(){
+var auto_update = function () {
     render_playing_controls_states();
     render_time();
     if(currSong != bp.currentSong){
@@ -83,7 +88,7 @@ function auto_update(){
 /**
  * Renders current song details
  */
-function render_song() {
+var render_song = function ()  {
     if(bp.player.song)
     {
         $("#artist").text(bp.player.song.artist);
@@ -116,7 +121,7 @@ function render_song() {
     }
 }
 
-function render_time() {
+var render_time = function ()  {
   if(bp.player.has_song){
     $('#time').removeClass('hide');
     bp_pos = bp.player.song.position;
@@ -153,7 +158,7 @@ function render_time() {
 /**
  * Renders the link to toggle the options panel
  */
-function render_options_link() {
+var render_options_link = function () {
     $("#optionsButton").html('<a></a>');
     $("#optionsButton a")
     .attr({ href: "#" })
@@ -166,22 +171,18 @@ function render_options_link() {
 /**
  * Renders the link to toggle the miniplayer playlist panel
  */
-function render_miniplayer_playlist_link() {
-    if(bp.playlists && bp.playlists.length>0){
-        $("#miniPlaylist").html('<a></a>');
-        $("#miniPlaylist a")
+var render_miniplayer_playlist_link = function () {
+    $("#miniPlaylist a")
         .attr({ href: "#" })
         .click(function(){
             location.reload();
-        })
-        .text(chrome.i18n.getMessage('DCF793CC'));
-    }
+        });
 }
 
 /**
  * Renders the link to turn on/off scrobbling
  */
-function render_scrobble_link() {
+var render_scrobble_link = function () {
     $("#scrobbling").html('<a></a>');
     $("#scrobbling a")
     .addClass('button margin')
@@ -193,7 +194,7 @@ function render_scrobble_link() {
 /**
  * Renders the link to turn on/off toasting
  */
-function render_toast_link() {
+var render_toast_link = function () {
     $("#toasting").html('<a></a>');
     $("#toasting a")
     .addClass('button margin')
@@ -205,7 +206,7 @@ function render_toast_link() {
     // }
 }
 
-function render_toast_duration_input() {
+var render_toast_duration_input = function ()  {
   if (bp.SETTINGS.toast){
     target = $("#toasting_duration");
     target.html('<span></span><input type="text" /><a></a>');
@@ -225,7 +226,7 @@ function render_toast_duration_input() {
 }
 
 
-function render_about_links_data(){
+var render_about_links_data = function () {
   $('#openAbout').click(function(){$('#aboutPopup').css({display:'block'})});
   $('#closeAbout').click(function(){$('#aboutPopup').css({display:'none'})});
   $('#version').html("version " + bp.currentVersion);
@@ -234,7 +235,7 @@ function render_about_links_data(){
 /**
  * Renders the link to open miniplayer
  */
-function render_miniplayer_link() {
+var render_miniplayer_link = function () {
     $("#miniplayer").html('<a></a>');
     $("#miniplayer a")
     .addClass('button margin')
@@ -249,7 +250,7 @@ function render_miniplayer_link() {
 /**
  * Renders the links to start playlists
  */
-function render_playlist_links() {
+var render_playlist_links = function ()  {
     if(bp.playlists.length>0 && $("#optionsSection").length>0){
         playlistSectionContent = chrome.i18n.getMessage('3544807A');
         $("#optionsSection").before('<div id="playlistSection"></div>');
@@ -267,7 +268,7 @@ function render_playlist_links() {
 /**
  * Builds playlist links and content
  */
-function build_playlist_links(){
+var build_playlist_links = function () {
     playlists = bp.playlists;
     playlistLinks = "";
     for (var i=0;i<playlists.length; i++) {
@@ -279,7 +280,7 @@ function build_playlist_links(){
 /**
  * Renders authentication/profile link
  */
-function render_auth_link() {
+var render_auth_link = function ()  {
     if(bp.lastfm_api.session.name && bp.lastfm_api.session.key)
     {
         $("#lastfm-profile").html(chrome.i18n.getMessage('52FF8F1E') + "<a></a><a></a>");
@@ -313,7 +314,7 @@ function render_auth_link() {
  * Renders all the play controls
  */
 
-function render_playing_controls(){
+var render_playing_controls = function () {
     $('#playing_controls').html(chrome.i18n.getMessage('5FEB6CDE'));
     render_playing_controls_states();
     $('#playPause').hover(function(){$(this).addClass('goog-flat-button-hover')},function(){$(this).removeClass('goog-flat-button-hover')}).click(playPause);
@@ -323,7 +324,7 @@ function render_playing_controls(){
     $('#shuffle_mode_button').click(toggleShuffle);
 }
 
-function render_playing_controls_states(){
+var render_playing_controls_states = function () {
     $('#repeat_mode_button').attr({class: bp.player.repeat_mode || 'NO_REPEAT'});
     $('#shuffle_mode_button').attr({class: bp.player.shuffle});
     if(bp.player.song){
@@ -344,7 +345,7 @@ function render_playing_controls_states(){
  * Renders the Google
  */
 
-function render_google_rating(){
+var render_google_rating = function () {
     if(bp.player.song){
         $('#google-buttons').html('<div class="rating-container hover-button"><div class="goog-inline-block goog-flat-button thumbs-up-button hover-button" title="" role="button" style="-webkit-user-select: none; " tabindex="0"></div><div class="goog-inline-block goog-flat-button thumbs-down-button hover-button" title="" role="button" style="-webkit-user-select: none; " tabindex="0"></div></div>');
         $('.thumbs-up-button').hover(function(){
@@ -369,7 +370,7 @@ function render_google_rating(){
 /**
  * Renders the love button
  */
-function render_love_button() {    
+var render_love_button = function () {     
     $("#love-button").html('<img src="img/ajax-loader.gif">');
     
     bp.lastfm_api.is_track_loved(bp.player.song.title,
@@ -396,7 +397,7 @@ function render_love_button() {
 /**
  * Turn on/off scrobbling link was clicked
  */
-function on_toggle_scrobble() {
+var on_toggle_scrobble = function ()  {
     bp.toggle_scrobble();
     render_scrobble_link();
 }
@@ -404,13 +405,13 @@ function on_toggle_scrobble() {
 /**
  * Turn on/off scrobbling link was clicked
  */
-function on_toggle_toast() {
+var on_toggle_toast = function ()  {
     bp.toggle_toast();
     render_toast_link();
     render_toast_duration_input();
 }
 
-function on_save_duration() {
+var on_save_duration = function ()  {
   seconds = $('#toasting_duration').find('input').val();
   bp.save_toast_duration(seconds);
   render_toast_duration_input();
@@ -419,7 +420,7 @@ function on_save_duration() {
 /**
  * Authentication link was clicked
  */
-function on_auth() {
+var on_auth = function ()  {
     bp.start_web_auth();
     window.close();
 }
@@ -427,7 +428,7 @@ function on_auth() {
 /**
  * Logout link was clicked
  */
-function on_logout() {
+var on_logout = function ()  {
     bp.clear_session();
     render_auth_link();
 }
@@ -435,14 +436,14 @@ function on_logout() {
 /**
  * Hides playlists window in miniplayer
  */
-function hide_playlists_miniplayer() {
+var hide_playlists_miniplayer = function ()  {
     $("#miniplayerPlaylist").css('display', 'none');
 }
 
 /**
  * Miniplayer link was clicked
  */
-function open_miniplayer() {
+var open_miniplayer = function ()  {
     chrome.extension.getViews({type:"notification"}).forEach(function(win) {
         if(win.is_miniplayer)
             win.miniplayer_close();
@@ -456,7 +457,7 @@ function open_miniplayer() {
 /**
  * Love button was clicked
  */
-function on_love() {
+var on_love = function ()  {
     bp.lastfm_api.love_track(bp.player.song.title, bp.player.song.artist, 
         function(result) {
             if(!result.error) {
@@ -477,7 +478,7 @@ function on_love() {
 /**
  * Unlove button was clicked
  */
-function on_unlove() {
+var on_unlove = function ()  {
     bp.lastfm_api.unlove_track(bp.player.song.title, bp.player.song.artist, 
         function(result) {
             if(!result.error) {
@@ -500,46 +501,52 @@ function on_unlove() {
  * Send commands to control playback
  */
 
-function playPause(){
+var playPause = function () {
     sendCommand("playPause");
     setTimeout("render_playing_controls()", 200);
 }
 
-function prevSong(){
+var prevSong = function () {
     sendCommand("prevSong");
     setTimeout("render_popup()", 200);
 }
 
-function nextSong(){
+var nextSong = function () {
     sendCommand("nextSong");
     setTimeout("render_popup()", 200);
 }
 
-function toggleRepeat(){
+var toggleRepeat = function () {
     sendCommand("toggleRepeat");
     setTimeout("render_playing_controls()", 100);
-    setTimeout("render_playing_controls()", 500);
 }
 
-function toggleShuffle(){
+var toggleShuffle = function () {
     sendCommand("toggleShuffle");
     setTimeout("render_playing_controls()", 100);
-    setTimeout("render_playing_controls()", 500);
 }
 
-function thumbsUp(){
+var thumbsUp = function () {
     sendCommand("thumbsUp");
     setTimeout("render_google_rating()", 200);
-	setTimeout("render_google_rating()", 300);
 }
 
-function thumbsDown(){
+var thumbsDown = function () {
     sendCommand("thumbsDown");
     setTimeout("render_google_rating()", 200);
-	setTimeout("render_google_rating()", 300);
 }
 
-function playlistStart(plsID){
+var volumeUp = function () {
+    sendCommand("replicateMoveUp");
+    setTimeout("render_google_rating()", 200);
+}
+
+var volumeDown = function () {
+    sendCommand("replicateMoveDown");
+    setTimeout("render_google_rating()", 200);
+}
+
+var playlistStart = function (plsID) {
     sendCommand("fullCommand", "\"playlistSelected\", this, {id: \"" + plsID + "\"}");
     sendCommand("fullCommand", "\"playlistSelected\", this, {id: \"" + plsID + "\"}");
     setTimeout(sendCommand("fullCommand", "\"playPlaylist\", null, \"1\""), 200);
@@ -548,12 +555,12 @@ function playlistStart(plsID){
 }
 
 /* Testing for instance of popup being the miniplayer, returns bool */
-function is_miniplayer(){
+var is_miniplayer = function () {
     return $('body').hasClass('miniplayer');
 }
 
 /* Checks if miniplayer is open, returns bool */
-function miniplayer_open(){
+var miniplayer_open = function () {
     var miniplayer_open_bool = false;
     chrome.extension.getViews({type:"notification"}).forEach(function(win) {
         if(win.is_miniplayer())
@@ -562,6 +569,17 @@ function miniplayer_open(){
     return miniplayer_open_bool;
 }
 
+var render_volume_plus = function () {
+    $("#plus").click(function (e) {
+        volumeUp();
+    });
+}
+
+var render_volume_minus = function () {
+    $("#minus").click(function (e) {
+        volumeDown();
+    });
+}
 chrome = {};
 chrome.i18n = {};
 
