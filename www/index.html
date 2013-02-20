@@ -14,10 +14,10 @@
 	    <img class="logo" src="img/logo.png" alt="Remote4Play">
 		<ul id="options">
 		    <li><a id="scan-btn" href="#">connect with qrcode</a></li>
-		    <li><a href="google.html">connect using a google account</a></li>
+            <li><a href="google.html">connect using a google account</a></li>
 		</ul>
         <script type="text/javascript">
-		    function _url_param(name, url) {
+		    var _url_param =  function (name, url) {
                 return unescape((RegExp(name + '=' +
                     '(.+?)(&|$)').exec(url) || [,null])[1]);
             }
@@ -39,6 +39,6 @@
 					);
 				};
 			}, true);
-		</script>
+        </script>
 	</body>
 </html>

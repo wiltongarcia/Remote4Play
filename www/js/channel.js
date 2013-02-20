@@ -19,6 +19,7 @@ var onOpened = function() {
   
 var onMessage = function(m) {
     newState = JSON.parse(m.data);
+    console.log(newState);
     if(!newState.command)
     {   
         var loadg = document.getElementById("loading");

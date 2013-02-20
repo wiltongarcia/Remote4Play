@@ -16,19 +16,16 @@ var reload_popup = function()
     /* Render popup when DOM is ready */
 
     render_popup();
-    //notification_autoclose();
 }
 
 var render_popup = function () {
-    render_time();
+    //render_time();
     render_scrobble_link();
     render_options_link();
     render_miniplayer_playlist_link();
     render_toast_link();
     render_miniplayer_link();
     render_song();
-    //render_playlist_links();
-    //render_auth_link();
     render_playing_controls();
     render_google_rating();
     render_toast_duration_input();
@@ -40,33 +37,7 @@ var render_popup = function () {
     render_volume_minus();
 }
 
-/* Notification closing */
 
-//Auto closes notification after 8 seconds, stops auto close if moused over, then starts 2 second close count after close
-//var notification_autoclose = function () {
-	//if($('body').hasClass('notification')){
-		//windowTimer = setTimeout(function(){window.close();}, bp.SETTINGS.toast_duration);
-		//window.onmouseout = function(e){
-			//windowTimer = setTimeout(function(){window.close();}, '2000');
-		//}
-		//window.onmouseover = function(e){
-			//clearTimeout(windowTimer);
-		//}
-	//}
-//}
-
-// Closes the notification
-var notification_close = function () {
-	if($('body').hasClass('notification')){
-		window.close();
-	}
-}
-
-var miniplayer_close = function () {
-    if($('body').hasClass('miniplayer')){
-        window.close();
-    }
-}
 
 /* Auto updating */
 
@@ -98,13 +69,9 @@ var render_song = function ()  {
         if(bp.player.song.cover.indexOf('default_album_med.png') == -1)
             cover = bp.player.song.cover;
         $("#cover").attr({ src: cover, width: "60", height: "60" });
-        
-        // if(bp.lastfm_api.session.name && bp.lastfm_api.session.key) {
-        //             render_love_button();
-        //         }
-        //         else {
-            $("#lastfm-buttons").hide();
-        // }
+
+        $("#lastfm-buttons").hide();
+
     }
     else {
         $("#song").addClass("nosong");
@@ -201,9 +168,6 @@ var render_toast_link = function () {
     .attr({ href: "#" })
     .click(on_toggle_toast)
     .text(bp.SETTINGS.toast ? chrome.i18n.getMessage('88215243') : chrome.i18n.getMessage('CFD75736'));
-    // if (miniplayer_open()){
-    //     $("#toasting").html($("#toasting").html() + chrome.i18n.getMessage('DBD92657'));
-    // }
 }
 
 var render_toast_duration_input = function ()  {
@@ -242,9 +206,6 @@ var render_miniplayer_link = function () {
     .attr({ href: "#" })
     .click(open_miniplayer)
     .text(chrome.i18n.getMessage('9EFC8A58'));
-    // if (miniplayer_open()){
-    //     $("#miniplayer a").text(chrome.i18n.getMessage('26F083AF'));
-    // }
 }
 
 /**
