@@ -62,7 +62,7 @@
                     if (button) {
                         button.onclick = function (e) {
                             e.preventDefault();
-                            window.plugins.childBrowser.showWebPage(this.href);
+                            window.plugins.childBrowser.showWebPage(this.href,{ showLocationBar: false });
                         };
                     }
                }
