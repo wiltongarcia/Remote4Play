@@ -13,11 +13,11 @@
 	<body>
 	    <img class="logo" src="img/logo.png" alt="Remote4Play">
 		<ul id="options">
-		    <li><a id="scan-btn" href="#">connect with qrcode</a></li>
+			<!--<li><a id="scan-btn" href="#">connect with qrcode</a></li>-->
             <li><a id="google-btn" href="google.html">connect using a google account</a></li>
             <li><a id="browser-btn" href="https://ws-music.appspot.com/remote">Open in browser</a></li>
-            <li><a id="terms-btn" href="http://ws-music-teste.appspot.com/terms">Terms of Service</a></li>
-            <li><a id="privacy-btn" href="http://ws-music-teste.appspot.com/privacy">Privacy Policy</a></li>
+            <!--<li><a id="terms-btn" href="http://ws-music-teste.appspot.com/terms">Terms of Service</a></li>-->
+            <!--<li><a id="privacy-btn" href="http://ws-music-teste.appspot.com/privacy">Privacy Policy</a></li>-->
 		</ul>
         <script type="text/javascript">
 		    var _url_param =  function (name, url) {
@@ -28,23 +28,23 @@
             document.addEventListener('deviceready', function () {
 
                 // qrcode scan button    
-                var scan = document.getElementById('scan-btn');
-                if (scan) {
-                    scan.onclick = function (e) {
-                        window.plugins.barcodeScanner.scan(
-                            function ( result ) {
-                                localStorage.setItem("token",_url_param("token", result.text));
-                                localStorage.setItem("user_key",_url_param("user_key", result.text));
-                                setTimeout(function(){
-                                    location.href = "player.html";
-                                },100);
-                            },
-                            function( err ){
-                                console.log(err);
-                            }
-                        );
-                    };
-               }
+            //  var scan = document.getElementById('scan-btn');
+            //  if (scan) {
+            //      scan.onclick = function (e) {
+            //          window.plugins.barcodeScanner.scan(
+            //              function ( result ) {
+            //                  localStorage.setItem("token",_url_param("token", result.text));
+            //                  localStorage.setItem("user_key",_url_param("user_key", result.text));
+            //                  setTimeout(function(){
+            //                      location.href = "player.html";
+            //                  },100);
+            //              },
+            //              function( err ){
+            //                  console.log(err);
+            //              }
+            //          );
+            //      };
+            // }
 
                // browser button
                var browser = document.getElementById('browser-btn');
