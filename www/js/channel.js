@@ -13,7 +13,8 @@ var sendMessage = function(path, opt_param) {
     xhr.send();
 };
   
-var onOpened = function() {
+var onOpened = function() {     
+    alert(1);
     sendMessage('https://ws-music.appspot.com/commands/connect');
 };
   
@@ -59,35 +60,9 @@ var checkConnect = function() {
     },(1000*120));
 }
 
-ad = {};
-
-var adMob = function()
-{
-    ad = _admob.fetchAd(document.getElementById('admob_ad')); 
-    console.log(ad.adEl);                                                                        
-      var polling_timeout = 0;                                                                                                              
-      var polling_func = function() {
-          console.log(ad.adEl.src);                                                                                             
-       if(ad.adEl.height == 48) {                                                                                                           
-         // we have an ad                                                                                                                   
-         console.log('received ad');
-       } 
-       else if(polling_timeout < 15000) {                                                                                                         
-         console.log('repoll');                                                                                                             
-         polling_timeout += 1000;                                                                                                           
-         window.setTimeout(polling_func, 1000);                                                                                             
-       }                                                                                                                                    
-       else {                                                                                                                               
-         console.log('no ad');                                                                                                              
-         //ad.adEl.style.display = 'none';                                                                                                    
-       }                                                                                                                                    
-      };                                                                                                                                    
-      window.setTimeout(polling_func, 1000);
-}
-  
 var initialize = function() {
     openChannel();
     checkConnect();
-    adMob();
+    //adMob();
 }      
 setTimeout(initialize, 1000);
