@@ -14,7 +14,6 @@ var sendMessage = function(path, opt_param) {
 };
   
 var onOpened = function() {     
-    alert(1);
     sendMessage('https://ws-music.appspot.com/commands/connect');
 };
   

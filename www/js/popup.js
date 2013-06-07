@@ -1,4 +1,4 @@
-=/**
+/**
  * popup.js
  * Popup page script
  * @author Jared Sartin <jared@level2studios.com>
