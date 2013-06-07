@@ -40,7 +40,7 @@
                 <div id="playing_controls" class="cf"></div>
             </div>
             <ul id="volume-list">
-                <!--<li><img src="img/audio.png" alt="Volume"></li>-->
+                <li><img src="img/audio.png" alt="Volume"></li>
                 <!--<li><a id="plus" href="#"><img src="img/plus.png" alt="+"></a></li>-->
                 <!--<li><a id="minus" href="#"><img src="img/minus.png" alt="-"></a></li>-->
             	<li id="miniPlaylist"><a href="#"><img src="img/refresh.png" alt="Refresh"></a></li>
@@ -52,8 +52,8 @@
             <img id="img-logo" src="img/logo.png" name="img-logo"> <img id="img-loading" src="img/loading.gif" name="img-loading">
         </div>
         <script type="text/javascript">
-            var token = 'AHRlWrqA7EDvKjUriGiZeWJQN0ax0IyNgSS9zF1W7d3Qpn2B7ZFzLQtxvjYW-6fyQYPaeaRKDkfX0mgrEUvTJr3395i30jJCih039om58uwBBJV8jzSk_0gQBxBn6ZcyABUSEzxTQg2A';
-            var user_key = '18e9508b2ac5dfc6f46dd02b0e312780';
+            var token = localStorage.getItem("token");
+            var user_key = localStorage.getItem("user_key");
             var bp = {};
         </script>
     </body>
